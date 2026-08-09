@@ -1,0 +1,10 @@
+streamlit
+langchain-ollama
+langchain-community
+pypdf
+langchain-core
+mongo-db
+python-dotenv
+pydantic-settings
+pymongo
+langchain-chroma
