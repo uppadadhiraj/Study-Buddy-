@@ -3,9 +3,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
 def process_pdf(pdf_path):
-    """
-    Loads a PDF and splits it into smaller chunks.
-    """
 
     loader = PyPDFLoader(pdf_path)
 

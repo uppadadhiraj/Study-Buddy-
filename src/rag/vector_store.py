@@ -10,9 +10,6 @@ COLLECTION_NAME = "study_buddy"
 
 
 def get_vector_store():
-    """
-    Creates/loads the persistent ChromaDB vector store.
-    """
 
     embeddings = get_embedding_model()
 
@@ -31,11 +28,6 @@ def add_documents_to_subject(
     file_name,
     file_bytes
 ):
-    """
-    Stores PDF chunks in ChromaDB.
-
-    Every chunk receives metadata containing the subject.
-    """
 
     vector_store = get_vector_store()
 
@@ -46,7 +38,6 @@ def add_documents_to_subject(
 
     for index, document in enumerate(documents):
 
-        # VERY IMPORTANT:
         # Store the subject as metadata.
         document.metadata["subject"] = subject
         document.metadata["file_name"] = file_name
@@ -70,9 +61,6 @@ def search_subject(
     subject,
     k=4
 ):
-    """
-    Searches ONLY inside the selected subject.
-    """
 
     vector_store = get_vector_store()
 

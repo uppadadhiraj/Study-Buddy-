@@ -9,13 +9,8 @@ from rag.chat import answer_question
 
 st.set_page_config(
     page_title="Study Buddy",
-    page_icon="📚"
 )
 
-
-# -------------------------------
-# Subjects
-# -------------------------------
 
 if "subjects" not in st.session_state:
 
@@ -33,19 +28,11 @@ if "current_subject" not in st.session_state:
     st.session_state.current_subject = "Choose Subject"
 
 
-# -------------------------------
-# Chat history
-# -------------------------------
-
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 
-# -------------------------------
-# Sidebar
-# -------------------------------
-
-st.sidebar.title("📚 Study Buddy")
+st.sidebar.title("Study Buddy")
 
 st.sidebar.write("Subjects")
 
@@ -57,7 +44,6 @@ selected_subject = st.sidebar.selectbox(
 
 
 # Change subject
-
 if selected_subject != st.session_state.current_subject:
 
     st.session_state.current_subject = selected_subject
@@ -67,10 +53,6 @@ if selected_subject != st.session_state.current_subject:
 
     st.rerun()
 
-
-# -------------------------------
-# Create New Subject
-# -------------------------------
 
 st.sidebar.write("Create New Subject")
 
@@ -118,11 +100,8 @@ if st.sidebar.button("Add Subject"):
         st.rerun()
 
 
-# -------------------------------
-# Main Page
-# -------------------------------
 
-st.title("📚 Study Buddy")
+st.title(" Study Buddy")
 
 
 if selected_subject == "Choose Subject":
@@ -139,10 +118,6 @@ st.header(
 )
 
 
-# ==================================================
-# ANSWER TYPE
-# ==================================================
-
 st.subheader("Choose Answer Type")
 
 
@@ -155,11 +130,7 @@ answer_type = st.selectbox(
 )
 
 
-# ==================================================
-# PDF UPLOAD
-# ==================================================
-
-st.subheader("📄 Upload Study Material")
+st.subheader("Upload Study Material")
 
 
 # SINGLE PDF UPLOAD
@@ -181,7 +152,6 @@ if uploaded_file is not None:
     if st.button("Process PDF"):
 
         # Create folder if it doesn't exist
-
         os.makedirs(
             "data/uploads",
             exist_ok=True
@@ -256,20 +226,16 @@ if uploaded_file is not None:
             st.write(e)
 
 
-# ==================================================
-# CHAT
-# ==================================================
 
 st.divider()
 
 
 st.subheader(
-    "💬 Ask " + selected_subject
+    "Ask " + selected_subject
 )
 
 
 # Show previous messages
-
 for message in st.session_state.messages:
 
     with st.chat_message(
@@ -282,7 +248,6 @@ for message in st.session_state.messages:
 
 
 # Chat input
-
 question = st.chat_input(
     "Ask your question..."
 )
@@ -291,14 +256,12 @@ question = st.chat_input(
 if question:
 
     # Show user question
-
     with st.chat_message("user"):
 
         st.write(question)
 
 
     # Save user question
-
     st.session_state.messages.append(
         {
             "role": "user",
@@ -308,7 +271,6 @@ if question:
 
 
     # Generate answer
-
     with st.chat_message("assistant"):
 
         with st.spinner(
@@ -341,7 +303,6 @@ if question:
 
 
     # Save AI response
-
     st.session_state.messages.append(
         {
             "role": "assistant",

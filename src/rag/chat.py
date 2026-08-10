@@ -20,17 +20,11 @@ def answer_question(
 ):
 
     # Search only the selected subject
-
     results = search_subject(
         question=question,
         subject=subject,
         k=4
     )
-
-
-    # -----------------------------------------
-    # No results
-    # -----------------------------------------
 
     if not results:
 
@@ -41,13 +35,7 @@ def answer_question(
             " study material."
         )
 
-
-    # -----------------------------------------
-    # Check relevance
-    # -----------------------------------------
-
     relevant_documents = []
-
 
     for document, score in results:
 
@@ -57,10 +45,6 @@ def answer_question(
                 document
             )
 
-
-    # -----------------------------------------
-    # No relevant information
-    # -----------------------------------------
 
     if not relevant_documents:
 
@@ -72,12 +56,7 @@ def answer_question(
         )
 
 
-    # -----------------------------------------
-    # Create context
-    # -----------------------------------------
-
     context = ""
-
 
     for document in relevant_documents:
 
@@ -86,10 +65,6 @@ def answer_question(
             + "\n\n"
         )
 
-
-    # -----------------------------------------
-    # Answer style
-    # -----------------------------------------
 
     if answer_type == "Simple and Understandable":
 
@@ -134,11 +109,6 @@ The answer should be detailed enough
 for a student to use it for a 10-mark answer.
 
 """
-
-
-    # -----------------------------------------
-    # Prompt
-    # -----------------------------------------
 
     prompt = f"""
 
@@ -187,16 +157,10 @@ STUDENT QUESTION:
 ANSWER:
 """
 
-
-    # -----------------------------------------
-    # Ask LLM
-    # -----------------------------------------
-
     llm = get_llm()
 
     response = llm.invoke(
         prompt
     )
-
 
     return response
